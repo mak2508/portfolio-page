@@ -2,24 +2,24 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: <a href='https://www.hbku.edu.qa/en/qcri'>Software Engineer at QCRI</a>
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   address: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Office SB-151</p>
+    <p>HBKU Research Complex, Education City,</p>
+    <p>Doha, Qatar</p>
 
 news: true  # includes a list of news items
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I work on turning research projects into commercial products under the Research Engineering division at QCRI. Some of the projects I have worked on include JUDO, SIHA, and TASRIF.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+I received my BSc in Computer Science from Carnegie Mellon University. I was recognized as a [Andrew Carnegie Society Scholar](https://www.cmu.edu/engage/give/donor-recognition/andrew-carnegie-society/acs-scholars.html) for my graduating batch.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+Recently, I have been investigating techniques to improve the convergence rate in the learning of deep networks. We are also looking into ways similar techniques can be applied to transformers. I do this work with [Dr. Amin Sadeghi](https://scholar.google.com/citations?user=Viogmi8AAAAJ&hl=en) outside of my work hours, to get exposure to research and Deep Learning.
