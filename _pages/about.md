@@ -6,7 +6,7 @@ subtitle: <a href='https://www.hbku.edu.qa/en/qcri'>Software Engineer at QCRI</a
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: profile_pic.jpeg
   image_circular: false # crops the image to make it circular
   address: >
     <p>Office SB-151</p>
