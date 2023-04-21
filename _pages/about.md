@@ -18,6 +18,8 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
+Welcome!
+
 I work on turning research projects into commercial products under the Research Engineering division at QCRI. Some of the projects I have worked on include JUDO, SIHA, and TASRIF.
 
 I received my BSc in Computer Science from Carnegie Mellon University. I was recognized as a [Andrew Carnegie Society Scholar](https://www.cmu.edu/engage/give/donor-recognition/andrew-carnegie-society/acs-scholars.html) for my graduating batch.
