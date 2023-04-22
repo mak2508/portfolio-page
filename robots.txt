@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://ahmadk.netlify.com/sitemap.xml
