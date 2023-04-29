@@ -34,7 +34,7 @@
     
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="canonical" href="https://ahmadk.netlify.com/projects/3_tasrif/">
-    
+
     <!-- Dark Mode -->
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
@@ -120,9 +120,23 @@
           <article>
             <p><a href="https://tasrif.qcri.org" rel="external nofollow noopener" target="_blank">Tasrif</a> is an open source data processing package for health data primarily collected through wearables built by QCRI alongside the <a href="https://siha.qcri.org" rel="external nofollow noopener" target="_blank">SIHA</a> project. The project was built as a convenience utility package to make it easier to process data collected by SIHA by health professionals of varying technical ability.</p>
 
+<p>Health data is usually timeseries data, representing some value like weight, BMI, heart-rate and the time this data point was measured.</p>
+
+<p>The following is an example of health data for Steps.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"Date"</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="s2">"12-07-2021"</span><span class="p">,</span><span class="w"> </span><span class="s2">"13-07-2021"</span><span class="p">,</span><span class="w"> </span><span class="s2">"14-07-2021"</span><span class="p">,</span><span class="w"> </span><span class="s2">"15-07-2021"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"Steps"</span><span class="p">:</span><span class="w">  </span><span class="p">[</span><span class="w">        </span><span class="mi">2100</span><span class="p">,</span><span class="w">         </span><span class="err">None</span><span class="p">,</span><span class="w">         </span><span class="err">None</span><span class="p">,</span><span class="w">         </span><span class="mi">5400</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>There are different operations we might want to perform on this data. For instance, we might want to remove all <code class="language-plaintext highlighter-rouge">null</code> entries. You could use the pandas <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html" rel="external nofollow noopener" target="_blank">dropna</a> function for this. You might also want to take the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.mean.html" rel="external nofollow noopener" target="_blank">mean</a> of the values after dropping the <code class="language-plaintext highlighter-rouge">null</code> values.</p>
+
+<p>Tasrif provides <a href="https://tasrif.qcri.org/operators.html" rel="external nofollow noopener" target="_blank"><code class="language-plaintext highlighter-rouge">operators</code></a> for each of these common operations performed on health data, extracted primarily from <a href="https://pandas.pydata.org/docs/getting_started/index.html" rel="external nofollow noopener" target="_blank">pandas</a>, but also from <a href="https://github.com/facebookresearch/Kats" rel="external nofollow noopener" target="_blank">facebook Kats</a> and <a href="https://github.com/blue-yonder/tsfresh" rel="external nofollow noopener" target="_blank">tsfresh</a>. On top of this, there are a number of <a href="https://github.com/qcri/tasrif/tree/master/tasrif/processing_pipeline/custom" rel="external nofollow noopener" target="_blank">custom operators</a> we have created from operations we found ourselves performing frequently on health data. You can see an example of these <code class="language-plaintext highlighter-rouge">operators</code> in play in the <a href="https://tasrif.qcri.org/pipelines.html" rel="external nofollow noopener" target="_blank">docs</a>.</p>
+
 <p>My <a href="https://github.com/qcri/tasrif/pulls?q=is%3Apr+is%3Aclosed+author%3Amak2508" rel="external nofollow noopener" target="_blank">tasks</a> in this project mainly revolved around creating a YAML based specification for tasrif pipelines, allowing for preprocessing to be done with minimal coding.</p>
 
-<p>You can read more about how tasrif pipelines work on the <a href="https://tasrif.qcri.org/pipelines.html" rel="external nofollow noopener" target="_blank">docs</a>. To give an example of how you would use YAML configs for the same example, it would look as follows:</p>
+<p>So for instance, the YAML configuration below produces the same result as the pipeline example from the docs linked above:</p>
 
 <p><code class="language-plaintext highlighter-rouge">example.yaml</code></p>
 
@@ -140,8 +154,9 @@
 <p><br>
 <code class="language-plaintext highlighter-rouge">examply.py</code></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">tasrif.yaml_parser</span> <span class="k">as</span> <span class="n">yaml_parser</span>
-<span class="kn">import</span> <span class="n">yaml</span> 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="n">tasrif.yaml_parser</span> <span class="k">as</span> <span class="n">yaml_parser</span>
+<span class="kn">import</span> <span class="n">yaml</span>
 
 <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">({</span>
     <span class="s">'Date'</span><span class="p">:</span>   <span class="p">[</span><span class="s">'05-06-2021'</span><span class="p">,</span> <span class="s">'06-06-2021'</span><span class="p">,</span> <span class="s">'07-06-2021'</span><span class="p">,</span> <span class="s">'08-06-2021'</span><span class="p">],</span>
@@ -160,11 +175,12 @@
         <span class="nf">print</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="nf">process</span><span class="p">()</span>
-</code></pre></div></div>
+<span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="c1"># Steps    4894.0
+# dtype: float64
+</span></code></pre></div></div>
 
-<p><br>
-This is a small pipeline example, and perhaps the usefulness of the YAML spec is not so apparent here. We have larger examples of YAML config files and their corresponding python equivalent that can be found in the <a href="https://github.com/qcri/tasrif/tree/master/examples" rel="external nofollow noopener" target="_blank">examples folder in the Tasrif GitHub repo</a>.</p>
-
+<p>This is a small pipeline example, and perhaps the usefulness of the YAML spec is not so apparent here. We have larger examples of YAML config files and their corresponding python equivalent that can be found in the <a href="https://github.com/qcri/tasrif/tree/master/examples" rel="external nofollow noopener" target="_blank">examples folder in the Tasrif GitHub repo</a>.</p>
 
           </article>
 
@@ -176,9 +192,10 @@ This is a small pipeline example, and perhaps the usefulness of the YAML spec is
     <footer class="fixed-bottom">
       <div class="container mt-0">
         © Copyright 2023 Ahmad  Khan. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted on <a href="https://www.netlify.com" target="_blank" rel="external nofollow noopener">Netlify</a>.
-Last updated: April 22, 2023.
+Last updated: April 29, 2023.
       </div>
     </footer>
+
 
     <!-- JavaScripts -->
     <!-- jQuery -->
@@ -220,10 +237,10 @@ Last updated: April 22, 2023.
 <!-- Scrolling Progress Bar -->
 <script type="text/javascript">
   /*
-   * This JavaScript code has been adapted from the article 
-   * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar, 
+   * This JavaScript code has been adapted from the article
+   * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar,
    * published on the website https://css-tricks.com on the 7th of May, 2014.
-   * Couple of changes were made to the original code to make it compatible 
+   * Couple of changes were made to the original code to make it compatible
    * with the `al-foio` theme.
    */
   const progressBar = $("#progress");
