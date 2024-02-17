@@ -20,7 +20,7 @@ Welcome!
 
 I am a MSc Computer Science student at [ETH Zürich](https://inf.ethz.ch/), specializing in Machine Intelligence (AI).
 
-Prior to this, I worked on turning research projects into commercial products under the Research Engineering division at [QCRI](https://www.hbku.edu.qa/en/qcri/). Some of the projects I have worked on include [Allama](/projects/allama/), [JUDO](/projects/allama/), [SIHA](/projects/siha/), and [Tasrif](/projects/tasrif/).
+Prior to this, I worked on turning research projects into commercial products under the Research Engineering division at [QCRI](https://www.hbku.edu.qa/en/qcri/). Some of the projects I have worked on include [Allama](https://allama.ai/), [JUDO](https://judo.qcri.org/), [SIHA](https://siha.qcri.org/), and [Tasrif](https://tasrif.qcri.org/).
 
 I received my BSc in Computer Science from [Carnegie Mellon University](https://www.cs.cmu.edu/) in 2021. I was recognized as an [Andrew Carnegie Society Scholar](https://www.cmu.edu/engage/give/donor-recognition/andrew-carnegie-society/acs-scholars.html) for my acadmic achievements, leadership, and volunteerism throughout my studies.
 
