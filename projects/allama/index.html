@@ -10,9 +10,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Judo | Ahmad  Khan</title>
+    <title>Allama | Ahmad  Khan</title>
     <meta name="author" content="Ahmad  Khan">
-    <meta name="description" content="web-based traffic simulation">
+    <meta name="description" content="GPT-based chatbot library">
     <meta name="keywords" content="portfolio-website, software-engineering, deep-learning, computer-science">
 
 
@@ -23,7 +23,7 @@
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CRoboto+Slab:100,300,400,500,700%7CMaterial+Icons">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
 
     <!-- Code Syntax Highlighting -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
@@ -33,7 +33,7 @@
     <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;">
     
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://ahmadk.netlify.com/projects/2_judo/">
+    <link rel="canonical" href="https://ahmadk.netlify.com/projects/allama/">
 
     <!-- Dark Mode -->
     
@@ -69,11 +69,6 @@
             <a class="nav-link" href="/">about</a>
           </li>
           
-
-          <!-- Blog -->
-          <li class="nav-item ">
-            <a class="nav-link" href="/blog/">blog</a>
-          </li>
 
           <!-- Other pages -->
           <li class="nav-item ">
@@ -113,14 +108,24 @@
         <div class="post">
 
           <header class="post-header">
-            <h1 class="post-title">Judo</h1>
-            <p class="post-description">web-based traffic simulation</p>
+            <h1 class="post-title">Allama</h1>
+            <p class="post-description">GPT-based chatbot library</p>
           </header>
 
           <article>
-            <p>Judo is a web application for efficient visualization of traffic simulation data generated using <a href="https://arxiv.org/abs/2010.03289" rel="external nofollow noopener" target="_blank">QarSUMO</a>, a distributed solution built by QCRI on top of an open source micro-traffic simulator, <a href="https://www.eclipse.org/sumo/" rel="external nofollow noopener" target="_blank">SUMO</a> to accomplish faster simulation times.</p>
+            <p><a href="https://allama.ai/" rel="external nofollow noopener" target="_blank">Allama</a> is a GPT-based chatbot where you can ask questions about Qatar government services. It was built using <a href="https://www.langchain.com/" rel="external nofollow noopener" target="_blank">LangChain</a> on data pulled from <a href="https://hukoomi.gov.qa/en/" rel="external nofollow noopener" target="_blank">Hukoomi</a> and other Qatar Ministry data.</p>
 
-<p>Judo takes the output from QarSUMO/SUMO and imports this data into a <a href="https://postgis.net" rel="external nofollow noopener" target="_blank">geo-spatial database (POSTGIS)</a>, exposed through a <a href="https://postgis.net" rel="external nofollow noopener" target="_blank">FastAPI</a> backend, connected to an <a href="https://angular.io" rel="external nofollow noopener" target="_blank">Angular</a> frontend, using <a href="https://pixijs.com" rel="external nofollow noopener" target="_blank">PIXI.js</a> for web graphics.</p>
+<p>However, the primary contribution of Allama is not just a chatbot, but rather an infrastructure for easily deploying GPT based chatbot using publicaly available datasets. Allama was designed in a modular fashion, with a pipleine to continuually collect updated data, connected through a backend server to a frontend chat interface.</p>
+
+<p>We will first discuss the treatment of data by Allama. We make use of a cron job (periodic task) using <a href="https://docs.celeryq.dev/en/stable/getting-started/introduction.html" rel="external nofollow noopener" target="_blank">celery workers</a> to crawl data from a website specified in the crawling worker. In the document crawler, the job is set up to download/scrape desired data from a certain domain. The worker will be invoked at a configured periodicity, where it will check for new data on the specified domain. In the case of <a href="https://hukoomi.gov.qa/en/" rel="external nofollow noopener" target="_blank">Hukoomi</a>, we check the date of the posts to see if there are any new posts, and keep downloading articles until we arrive at a post that has been already downloaded. In the case of a different webpage, a different check might be make more sense. The crawler then adds a parsing task for each newly downloaded document.</p>
+
+<p>The parse tasks are picked up by the parsing worker, which filters out irrelevant parts of the downloaded document as setup by the user. The filtered document is sent to the chunker through redis once again.</p>
+
+<p>The chunker breaks up the document into sizes appropriate for GPT embeddings.</p>
+
+<p>This is in fact the only part of the entire codebase that needs to be adapted to set up a new chatbot for a new data source. You need to configure a crawler to download the latest data periodically and a parser to extract the useful sections of the downloaded data. The rest of the pipeline, namely chunking, embedding, and inserting into the vector db remains unchanged.</p>
+
+<p>The rest of the architecture includes a frontend built using Angular to render the chatbot, a backend built using FastAPI to handle requests, and a PostgreSQL database that we use to cache some queries to conserve GPT api usage.</p>
 
           </article>
 
@@ -131,8 +136,8 @@
     <!-- Footer -->    
     <footer class="fixed-bottom">
       <div class="container mt-0">
-        © Copyright 2023 Ahmad  Khan. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted on <a href="https://www.netlify.com" target="_blank" rel="external nofollow noopener">Netlify</a>.
-Last updated: April 29, 2023.
+        © Copyright 2024 Ahmad  Khan. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted on <a href="https://www.netlify.com" target="_blank" rel="external nofollow noopener">Netlify</a>.
+Last updated: February 17, 2024.
       </div>
     </footer>
 
