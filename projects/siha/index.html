@@ -71,6 +71,9 @@
           
 
           <!-- Other pages -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/projects/">projects</a>
+          </li>
 
           <!-- CV -->
           <li class="nav-item">
@@ -110,7 +113,39 @@
           </header>
 
           <article>
-            <p><a href="https://siha.qcri.org" rel="external nofollow noopener" target="_blank">SIHA</a> is an active project under QCRI that collects, analyzes, and exposes health data through a secure API.</p>
+            <p><a href="https://siha.qcri.org" rel="external nofollow noopener" target="_blank">SIHA</a> (System for Integrated Health Analytics) is a platform developed at QCRI that extracts, unifies, and provides health data from various wearable devices through a unified API infrastructure. This tool was built for use in various research projects including diabetes studies in collaboration with <a href="https://weill.cornell.edu/" rel="external nofollow noopener" target="_blank">Weil Cornell Medicine</a> and <a href="https://www.hamad.qa/EN/Pages/default.aspx" rel="external nofollow noopener" target="_blank">Hamad Hostpital</a> (biggest hospital in Qatar).</p>
+
+<h2 id="key-features">Key Features</h2>
+
+<p><strong>Data Processing &amp; Integration</strong></p>
+<ul>
+  <li>Developed YAML interface for <a href="https://github.com/qcri/tasrif" rel="external nofollow noopener" target="_blank">TASRIF</a>, an open-source time-series data processing tool</li>
+  <li>Automated collection and harmonization of wearable device data using <a href="https://docs.celeryq.dev/en/stable/userguide/workers.html" rel="external nofollow noopener" target="_blank">Celery</a> workers</li>
+  <li>Standardized data formats for cross-device compatibility, including Huawei, Garmin, Fitbit, Apple, and Samsung watches.</li>
+</ul>
+
+<p><strong>Secure Infrastructure</strong></p>
+<ul>
+  <li>RESTful API with role-based access controls and OAuth2 authentication to ensure private patient data is secure</li>
+  <li>Created on-premise deployment script pulling images from MS Azure for secure deployment</li>
+</ul>
+
+<p><strong>Analytics &amp; Insights</strong></p>
+<ul>
+  <li>Statistical analysis tools for health trends</li>
+  <li>Interactive dashboards for data visualization</li>
+  <li>Export capabilities for research and reporting</li>
+</ul>
+
+<p><strong>Mobile Application</strong>
+Took ownership over end-to-end development of the Mobile Application.</p>
+<ul>
+  <li>Migrated app to null-safety and BLOC architecture pattern</li>
+  <li>Updated UI/UX and created new screens using Flutter for a new coherant brand identity</li>
+  <li>Implemented new Team Competitions feature for user engagement</li>
+</ul>
+
+<p>The Mobile Application was a key delivarable for a $\sim$$3million grant to build a health system across public hospitals in Qatar.</p>
 
           </article>
 
@@ -122,7 +157,7 @@
     <footer class="fixed-bottom">
       <div class="container mt-0">
         © Copyright 2025 Ahmad  Khan. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted on <a href="https://www.netlify.com" target="_blank" rel="external nofollow noopener">Netlify</a>.
-Last updated: September 08, 2025.
+Last updated: September 15, 2025.
       </div>
     </footer>
 

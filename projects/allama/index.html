@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Allama | Ahmad  Khan</title>
     <meta name="author" content="Ahmad  Khan">
-    <meta name="description" content="GPT-based chatbot library">
+    <meta name="description" content="RAG-based chatbot for Qatar Government">
     <meta name="keywords" content="portfolio-website, software-engineering, deep-learning, computer-science">
 
 
@@ -71,6 +71,9 @@
           
 
           <!-- Other pages -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/projects/">projects</a>
+          </li>
 
           <!-- CV -->
           <li class="nav-item">
@@ -106,7 +109,7 @@
 
           <header class="post-header">
             <h1 class="post-title">Allama</h1>
-            <p class="post-description">GPT-based chatbot library</p>
+            <p class="post-description">RAG-based chatbot for Qatar Government</p>
           </header>
 
           <article>
@@ -117,8 +120,6 @@
 <p>We will first discuss the treatment of data by Allama. We make use of a cron job (periodic task) using <a href="https://docs.celeryq.dev/en/stable/getting-started/introduction.html" rel="external nofollow noopener" target="_blank">celery workers</a> to crawl data from a website specified in the crawling worker. In the document crawler, the job is set up to download/scrape desired data from a certain domain. The worker will be invoked at a configured periodicity, where it will check for new data on the specified domain. In the case of <a href="https://hukoomi.gov.qa/en/" rel="external nofollow noopener" target="_blank">Hukoomi</a>, we check the date of the posts to see if there are any new posts, and keep downloading articles until we arrive at a post that has been already downloaded. In the case of a different webpage, a different check might be make more sense. The crawler then adds a parsing task for each newly downloaded document.</p>
 
 <p>The parse tasks are picked up by the parsing worker, which filters out irrelevant parts of the downloaded document as setup by the user. The filtered document is sent to the chunker through redis once again.</p>
-
-<p>The chunker breaks up the document into sizes appropriate for GPT embeddings.</p>
 
 <p>This is in fact the only part of the entire codebase that needs to be adapted to set up a new chatbot for a new data source. You need to configure a crawler to download the latest data periodically and a parser to extract the useful sections of the downloaded data. The rest of the pipeline, namely chunking, embedding, and inserting into the vector db remains unchanged.</p>
 
@@ -134,7 +135,7 @@
     <footer class="fixed-bottom">
       <div class="container mt-0">
         © Copyright 2025 Ahmad  Khan. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted on <a href="https://www.netlify.com" target="_blank" rel="external nofollow noopener">Netlify</a>.
-Last updated: September 08, 2025.
+Last updated: September 15, 2025.
       </div>
     </footer>
 
